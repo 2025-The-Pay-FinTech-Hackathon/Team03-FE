@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({
     text-base
     font-normal
     transition-all
-    duration-120
+    duration-100
     focus:outline-none
     focus:border-2
     disabled:opacity-50
