@@ -4,11 +4,11 @@ const config = {
   theme: {
     extend: {
       colors: {
-        ivory: "#FFFEFA",
-        beige: "#FAF6F6",
-        red: "#ff5e5e",
-        brown: "#3B1D1D",
-        yellow: "#FFEB3B",
+        customIvory: "#FFFEFA",
+        customBeige: "#FAF6F6",
+        customRed: "#ff5e5e",
+        customBrown: "#3B1D1D",
+        customYellow: "#FFEB3B",
       },
     },
   },
