@@ -17,7 +17,7 @@ const VerticalActionButton: React.FC<VerticalActionButtonProps> = ({
       disabled={disabled}
       className={`
         w-fit
-        p-4
+        p-2
         flex
         flex-col
         items-center
