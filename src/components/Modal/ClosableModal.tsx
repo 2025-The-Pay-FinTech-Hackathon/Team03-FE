@@ -16,7 +16,6 @@ const ClosableModal: React.FC<ClosableModalProps> = ({
   isOpen,
   onClose,
   children,
-  title,
 }) => {
   const [mounted, setMounted] = useState(false);
 
