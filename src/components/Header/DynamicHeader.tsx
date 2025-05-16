@@ -18,5 +18,5 @@ export default function DynamicHeader() {
       />
     );
   }
-  return <TitleHeader title={headerConfig.title || ""} />;
+  return <TitleHeader />;
 }

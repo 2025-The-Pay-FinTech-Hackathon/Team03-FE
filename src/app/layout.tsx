@@ -51,7 +51,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
       </head>
       <body className="antialiased min-h-screen bg-white overflow-hidden">
-        <div className="mx-auto max-w-[600px] min-h-screen bg-[#f7f8f8] shadow-lg color-[#1E1E1E] h-full relative">
+        <div className="mx-auto max-w-[500px] min-h-screen bg-[#f7f8f8] shadow-lg color-[#1E1E1E] h-full relative">
           {hasHeader && (
             <div className="sticky top-0 left-0 right-0 z-10 bg-[#f7f8f8]">
               <DynamicHeader />

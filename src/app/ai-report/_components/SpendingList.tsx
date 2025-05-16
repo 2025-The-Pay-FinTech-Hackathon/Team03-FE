@@ -13,7 +13,7 @@ interface SpendingListProps {
 export default function SpendingList({ spending }: SpendingListProps) {
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">소비 내역</h2>
+      <h2 className="text-xl font-semibold">입출금 내역</h2>
       <div className="space-y-2">
         {spending.map((item, index) => (
           <div
