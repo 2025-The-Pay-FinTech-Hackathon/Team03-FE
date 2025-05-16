@@ -7,7 +7,7 @@ import AIComment from "./_components/AIComment";
 
 export default function HomePage() {
   return (
-    <div className="w-full h-[calc(100vh-3.5rem)] flex flex-col relative">
+    <div className="w-full h-full flex flex-col relative">
       {/* 배경 이미지 */}
       <div className="absolute inset-0 w-full h-full">
         <Image
