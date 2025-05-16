@@ -85,7 +85,7 @@ export default function QuestPage() {
         <div
           className="fixed bottom-6 left-1/2 transform -translate-x-1/2 px-4"
           style={{
-            maxWidth: "600px",
+            maxWidth: "500px",
             width: "calc(100% - 48px)",
             zIndex: 10,
           }}
