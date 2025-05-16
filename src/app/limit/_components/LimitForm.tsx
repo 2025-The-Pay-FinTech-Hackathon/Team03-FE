@@ -6,6 +6,7 @@ import { AmountSection } from "./AmountSection";
 import { TimeSection } from "./TimeSection";
 import ConfirmModal from "@/components/Modal/ConfirmModal";
 import AlertModal from "@/components/Modal/AlertModal";
+import { useAuthStore } from "@/store/useAuthStore";
 
 export default function LimitForm() {
   const {
@@ -20,6 +21,7 @@ export default function LimitForm() {
     handleSave,
   } = useLimitForm();
 
+  const { role } = useAuthStore();
   const saveModal = useModal();
   const cancelModal = useModal();
   const resultModal = useModal();
@@ -74,16 +76,17 @@ export default function LimitForm() {
           />
         </div>
 
-        {!isReadOnly ? (
-          <div className="mt-4 flex gap-4">
-            <TextButton onClick={handleCancelClick} variant="secondary">
-              취소
-            </TextButton>
-            <TextButton onClick={handleSaveClick}>저장</TextButton>
-          </div>
-        ) : (
-          <TextButton onClick={handleEdit}>수정</TextButton>
-        )}
+        {role !== "CHILD" &&
+          (!isReadOnly ? (
+            <div className="mt-4 flex gap-4">
+              <TextButton onClick={handleCancelClick} variant="secondary">
+                취소
+              </TextButton>
+              <TextButton onClick={handleSaveClick}>저장</TextButton>
+            </div>
+          ) : (
+            <TextButton onClick={handleEdit}>수정</TextButton>
+          ))}
       </div>
 
       <ConfirmModal

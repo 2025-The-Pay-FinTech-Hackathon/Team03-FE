@@ -17,9 +17,12 @@ export function TimeSection({
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-lg font-semibold">결제 허용 시간</h2>
-      <p className="text-xs text-gray-500">
-        24시간 형식으로 입력해주세요. (예: 09:00, 17:30)
-      </p>
+      {!isReadOnly && (
+        <p className="text-xs text-gray-500">
+          24시간 형식으로 입력해주세요. (예: 09:00, 17:30)
+        </p>
+      )}
+
       <div className="flex items-center gap-2">
         <Input
           type="text"
