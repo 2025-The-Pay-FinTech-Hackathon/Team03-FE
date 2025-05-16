@@ -5,6 +5,7 @@ import ConfirmModal from "@/components/Modal/ConfirmModal";
 import AlertModal from "@/components/Modal/AlertModal";
 import { endQuest } from "@/api/quests/endQuest";
 import { completeQuest } from "@/api/quests/completeQuest";
+import { ROUTES } from "@/constants/routes";
 
 interface QuestActionsProps {
   isParent: boolean;
@@ -98,7 +99,7 @@ export default function QuestActions({ isParent, questId }: QuestActionsProps) {
             resultMessage === "퀘스트가 종료되었습니다." ||
             resultMessage === "퀘스트가 성공적으로 완료되었습니다."
           ) {
-            router.back();
+            router.push(ROUTES.quest);
           }
         }}
         onConfirm={() => {
@@ -107,7 +108,7 @@ export default function QuestActions({ isParent, questId }: QuestActionsProps) {
             resultMessage === "퀘스트가 종료되었습니다." ||
             resultMessage === "퀘스트가 성공적으로 완료되었습니다."
           ) {
-            router.back();
+            router.push(ROUTES.quest);
           }
         }}
         confirmText="확인"

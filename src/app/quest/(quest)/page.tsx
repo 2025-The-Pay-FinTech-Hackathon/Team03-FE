@@ -65,7 +65,7 @@ export default function QuestPage() {
           </div>
         </section>
 
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-4 pb-26">
           <h2 className="text-xl font-bold">종료된 퀘스트</h2>
           <div className="grid grid-cols-2 gap-3">
             {completedQuests.length > 0 ? (
@@ -80,14 +80,25 @@ export default function QuestPage() {
           </div>
         </section>
       </div>
+
       {role === "PARENT" && (
-        <TextButton
-          onClick={() => {
-            router.push(ROUTES.createQuest);
+        <div
+          className="fixed bottom-6 left-1/2 transform -translate-x-1/2 px-4"
+          style={{
+            maxWidth: "600px",
+            width: "calc(100% - 48px)",
+            zIndex: 10,
           }}
         >
-          우리 아이에게 퀘스트 보내기
-        </TextButton>
+          <TextButton
+            onClick={() => {
+              router.push(ROUTES.createQuest);
+            }}
+            width="full"
+          >
+            새로운 퀘스트 생성하기
+          </TextButton>
+        </div>
       )}
     </div>
   );
