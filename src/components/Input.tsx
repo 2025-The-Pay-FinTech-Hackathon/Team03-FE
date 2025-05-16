@@ -1,15 +1,60 @@
 "use client";
 
-import { InputHTMLAttributes } from "react";
+import React from "react";
 
-export default function Input({
-  className = "",
-  ...props
-}: InputHTMLAttributes<HTMLInputElement>) {
-  return (
+interface InputProps {
+  type: "text" | "datetime-local" | "textarea";
+  value: string;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  placeholder?: string;
+  disabled?: boolean;
+}
+
+const Input: React.FC<InputProps> = ({
+  type,
+  value,
+  onChange,
+  placeholder = "",
+  disabled = false,
+}) => {
+  const baseStyle = `
+    w-full
+    p-4
+    rounded-xl
+    border
+    border-[#333333]
+    bg-[#f7f8f8]
+    text-base
+    font-normal
+    transition-all
+    duration-100
+    focus:outline-none
+    focus:border-2
+    disabled:opacity-50
+    disabled:cursor-not-allowed
+  `;
+
+  return type === "textarea" ? (
+    <textarea
+      className={baseStyle}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      disabled={disabled}
+      rows={4}
+    />
+  ) : (
     <input
-      className={`w-full px-4 py-2 border border-gray-200 rounded-lg outline-none focus:border-primary disabled:bg-gray-100 ${className}`}
-      {...props}
+      type={type}
+      className={baseStyle}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      disabled={disabled}
     />
   );
-}
+};
+
+export default Input;
