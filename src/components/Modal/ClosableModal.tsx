@@ -69,7 +69,7 @@ const ClosableModal: React.FC<ClosableModalProps> = ({
         <div className="flex flex-col gap-3 justify-between items-center p-4 ">
           <div className="w-full">
             <VerticalActionButton onClick={onClose} aria-label="닫기">
-              <X className="w-6 h-6 text-[#3B1D1D]" />
+              <X className="w-6 h-6" />
             </VerticalActionButton>
           </div>
 

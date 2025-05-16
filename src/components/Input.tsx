@@ -22,10 +22,10 @@ const Input: React.FC<InputProps> = ({
   const baseStyle = `
     w-full
     p-4
-    rounded-lg
+    rounded-xl
     border
-    border-[#3B1D1D]
-    bg-[#FAF6F6]
+    border-[#333333]
+    bg-[#f7f8f8]
     text-base
     font-normal
     transition-all

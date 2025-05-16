@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="antialiased min-h-screen bg-white">
-        <div className="mx-auto max-w-[600px] min-h-screen bg-[#FFFEFA] shadow-lg">
+        <div className="mx-auto max-w-[600px] min-h-screen bg-[#f7f8f8] shadow-lg color-[#1E1E1E]">
           <DynamicHeader />
           {children}
         </div>

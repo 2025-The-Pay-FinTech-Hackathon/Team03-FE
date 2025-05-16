@@ -54,10 +54,10 @@ const Dropdown: React.FC<DropdownProps> = ({
         className={`
           w-full
           p-4
-          rounded-lg
+          rounded-xl
           ${isOpen ? "border-2" : "border"}
-          border-[#3B1D1D]
-          bg-[#FAF6F6]
+          border-[#333333]
+          bg-[#FFFFFF]
           text-base
           font-normal
           transition-all
@@ -75,7 +75,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         <ChevronDown
-          className={`text-[#3B1D1D] transition-transform duration-200 ${
+          className={`transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -89,8 +89,8 @@ const Dropdown: React.FC<DropdownProps> = ({
           mt-1
           bg-white
           border
-          border-[#3B1D1D]
-          rounded-lg
+          border-[#1E1E1E]
+          rounded-xl
           shadow-lg
           overflow-hidden
           transition-all
@@ -109,9 +109,9 @@ const Dropdown: React.FC<DropdownProps> = ({
             onClick={() => handleSelect(opt.value)}
             className={`
               p-4
-              hover:bg-[#FAF6F6]
+              hover:bg-[#f7f8f8]
               cursor-pointer
-              ${opt.value === value ? "bg-[#FAF6F6] font-medium" : ""}
+              ${opt.value === value ? "bg-white font-medium" : ""}
             `}
           >
             {opt.label}

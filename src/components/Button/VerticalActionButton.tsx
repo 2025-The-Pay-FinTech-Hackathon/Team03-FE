@@ -31,7 +31,7 @@ const VerticalActionButton: React.FC<VerticalActionButtonProps> = ({
           !disabled &&
           `
           hover:scale-102
-          hover:bg-[#FAF6F6]
+          hover:bg-[#333333]/10
           active:scale-98
           cursor-pointer
         `

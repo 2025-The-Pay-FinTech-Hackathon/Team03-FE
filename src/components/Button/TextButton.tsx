@@ -7,7 +7,7 @@ interface TextButtonProps {
   onClick: () => void;
   disabled?: boolean;
   width?: "full" | "fit";
-  variant?: "default" | "primary" | "secondary";
+  variant?: "primary" | "secondary";
 }
 
 const TextButton: React.FC<TextButtonProps> = ({
@@ -15,30 +15,22 @@ const TextButton: React.FC<TextButtonProps> = ({
   onClick,
   disabled = false,
   width = "full",
-  variant = "default",
+  variant = "primary",
 }) => {
   const getVariantStyles = () => {
     switch (variant) {
-      case "primary":
-        return {
-          bg: "bg-[#3B1D1D]",
-          text: "text-[#FFFEFA]",
-          hover: "hover:bg-[#3B1D1D]/90",
-          active: "active:bg-[#3B1D1D]/80",
-        };
       case "secondary":
         return {
-          bg: "bg-[#FAF6F6]",
-          text: "text-[#3B1D1D]",
-          border: "border border-[#3B1D1D]",
-          hover: "hover:bg-[#FAF6F6]/90",
-          active: "active:bg-[#FAF6F6]/80",
+          bg: "bg-[#FFFFFF]",
+          border: "border border-[#1E1E1E]",
+          hover: "hover:bg-[#DEE1E4]/20",
+          active: "active:bg-[#DEE1E4]/50",
         };
       default:
         return {
-          bg: "bg-[#FFEB3B]",
-          hover: "hover:bg-[#FFEB3B]/90",
-          active: "active:bg-[#FFEB3B]/80",
+          bg: "bg-[#FFEB00]",
+          hover: "hover:bg-[#FFEB00]/90",
+          active: "active:bg-[#FFEB00]/80",
         };
     }
   };
@@ -53,9 +45,8 @@ const TextButton: React.FC<TextButtonProps> = ({
         ${width === "full" ? "w-full" : "w-fit"}
         py-4
         px-8
-        rounded-lg
+        rounded-xl
         ${styles.bg}
-        ${styles.text || ""}
         ${styles.border || ""}
         font-semibold
         text-base
@@ -73,7 +64,7 @@ const TextButton: React.FC<TextButtonProps> = ({
           cursor-pointer
         `
         }
-        disabled:bg-gray-200
+        disabled:bg-[#DEE1E4]
         disabled:cursor-not-allowed
         disabled:transform-none
         disabled:shadow-none
