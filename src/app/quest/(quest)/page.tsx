@@ -51,7 +51,7 @@ export default function QuestPage() {
     <div className="w-full flex flex-col p-6 justify-between h-full">
       <div className="flex flex-col gap-8">
         <section className="flex flex-col gap-4">
-          <h2 className="text-xl font-bold">진행중인 퀘스트</h2>
+          <h2 className="text-lg font-bold">진행중인 퀘스트</h2>
           <div className="grid grid-cols-2 gap-3">
             {ongoingQuests.length > 0 ? (
               ongoingQuests.map((quest) => (
@@ -66,7 +66,7 @@ export default function QuestPage() {
         </section>
 
         <section className="flex flex-col gap-4 pb-26">
-          <h2 className="text-xl font-bold">종료된 퀘스트</h2>
+          <h2 className="text-lg font-bold">종료된 퀘스트</h2>
           <div className="grid grid-cols-2 gap-3">
             {completedQuests.length > 0 ? (
               completedQuests.map((quest) => (
