@@ -5,5 +5,5 @@ export interface AttemptPaymentRequest {
   amount: number;
   timestamp: string;
   userId: number;
-  status: "REQUEST" | "APPROVED" | "REJECTED";
+  status: "REQUEST" | "APPROVE" | "REFUSED";
 }

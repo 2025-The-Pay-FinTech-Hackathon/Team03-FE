@@ -41,5 +41,6 @@ export const ENDPOINTS = {
   // 결제 관련
   PAYMENT: {
     ATTEMPT: `${BASE_API}/payments/attempt`,
+    APPROVE: `${BASE_API}/payments/approve`,
   },
 };
