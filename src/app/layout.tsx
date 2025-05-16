@@ -6,6 +6,7 @@ import { initializeAuth } from "@/utils/auth";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { getHeaderConfig } from "@/constants/headers";
+import { QuestNotification } from "@/components/QuestNotification";
 
 export default function RootLayout({
   children,
@@ -19,6 +20,13 @@ export default function RootLayout({
   useEffect(() => {
     initializeAuth();
   }, []);
+
+  const getToken = () => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("accessToken") || "";
+    }
+    return "";
+  };
 
   return (
     <html lang="ko">
@@ -40,6 +48,7 @@ export default function RootLayout({
             {children}
           </div>
         </div>
+        <QuestNotification token={getToken()} />
       </body>
     </html>
   );

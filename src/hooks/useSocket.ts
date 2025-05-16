@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import io from "socket.io-client";
-import { QuestEventResponse } from "@/types/quests/questEventTypes";
 
 export const useSocket = (token: string) => {
   const socketRef = useRef<SocketIOClient.Socket | null>(null);
@@ -18,11 +17,6 @@ export const useSocket = (token: string) => {
     // 연결 이벤트 리스너
     socketRef.current.on("connect", () => {
       console.log("✅ Socket connected:", socketRef.current?.id);
-    });
-
-    // 퀘스트 이벤트 리스너
-    socketRef.current.on("quest", (data: QuestEventResponse) => {
-      console.log("📥 Quest received:", data);
     });
 
     // 연결 해제 이벤트 리스너
