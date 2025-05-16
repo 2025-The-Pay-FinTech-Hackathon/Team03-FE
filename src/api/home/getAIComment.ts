@@ -2,7 +2,7 @@ import { axiosInstance } from "@/api/axiosInstance";
 import { ENDPOINTS } from "@/constants/endpoints";
 import { ApiResponse } from "@/types/apiResponseTypes";
 
-export async function getHomeInfo(): Promise<ApiResponse<string | null>> {
+export async function getAIComment(): Promise<ApiResponse<string | null>> {
   try {
     const response = await axiosInstance.get<ApiResponse<string | null>>(
       ENDPOINTS.HOME.GET_AI_COMMENT

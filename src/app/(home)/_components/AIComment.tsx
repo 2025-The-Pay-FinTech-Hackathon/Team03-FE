@@ -2,22 +2,32 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { getAIComment } from "@/api/home/getAIComment";
 
 export default function AIComment() {
   const [isVisible, setIsVisible] = useState(false);
-
-  // 데모 코멘트
-  const aiComment =
-    "오늘도 열심히 절약하고 계시네요! 오늘도 열심히 절약하고 계시네요!🌟";
+  const [comment, setComment] = useState<string | null>(null);
 
   useEffect(() => {
-    // 컴포넌트 마운트 후 약간의 딜레이를 주고 애니메이션 시작
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
+    const fetchComment = async () => {
+      try {
+        const response = await getAIComment();
+        if (response.isSuccess && response.result) {
+          setComment(response.result);
+          // 코멘트를 가져온 후 애니메이션 시작
+          setTimeout(() => {
+            setIsVisible(true);
+          }, 100);
+        }
+      } catch (error) {
+        console.error("AI 코멘트 조회 중 오류 발생:", error);
+      }
+    };
 
-    return () => clearTimeout(timer);
+    fetchComment();
   }, []);
+
+  if (!comment) return null;
 
   return (
     <div className="flex flex-col items-center justify-end relative py-4 px-12 overflow-y-auto">
@@ -41,7 +51,7 @@ export default function AIComment() {
         <div className="flex items-start gap-2">
           <div className="flex-1">
             <p className="text-gray-800 leading-relaxed whitespace-pre-line">
-              {aiComment}
+              {comment}
             </p>
           </div>
         </div>
