@@ -30,7 +30,7 @@ export const ENDPOINTS = {
   LIMIT: {
     CREATE: `${BASE_API}/limits/create`,
     UPDATE: `${BASE_API}/limits/change`,
-    GET: `${BASE_API}/limits`,
+    GET: `${BASE_API}/limits/`,
   },
 
   // 결제 관련
