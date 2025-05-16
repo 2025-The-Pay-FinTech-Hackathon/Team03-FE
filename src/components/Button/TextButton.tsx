@@ -64,6 +64,7 @@ const TextButton: React.FC<TextButtonProps> = ({
         `
         }
         disabled:bg-[#DEE1E4]
+        disabled:text-[#333333]
         disabled:cursor-not-allowed
         disabled:transform-none
         disabled:shadow-none

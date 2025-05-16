@@ -57,7 +57,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           rounded-xl
           ${isOpen ? "border-2" : "border"}
           border-[#333333]
-          bg-[#FFFFFF]
+          bg-[#f7f8f8]
           text-base
           font-normal
           transition-all
@@ -96,9 +96,10 @@ const Dropdown: React.FC<DropdownProps> = ({
           transition-all
           duration-200
           origin-top
+          overflow-y-scroll
           ${
             isOpen
-              ? "opacity-100 scale-y-100 max-h-60"
+              ? "opacity-100 scale-y-100 max-h-80"
               : "opacity-0 scale-y-0 max-h-0"
           }
         `}
