@@ -5,15 +5,15 @@ import { GetQuestDetailResult } from "@/types/quests/getQuestDetail";
 
 export async function getQuestDetail(
   questId: string
-): Promise<ApiResponse<GetQuestDetailResult>> {
+): Promise<ApiResponse<GetQuestDetailResult | null>> {
   try {
-    const response = await axiosInstance.get<ApiResponse<GetQuestDetailResult>>(
-      `${ENDPOINTS.QUESTS.GET_DETAIL(questId)}`
-    );
+    const response = await axiosInstance.get<
+      ApiResponse<GetQuestDetailResult | null>
+    >(`${ENDPOINTS.QUESTS.GET_DETAIL(questId)}`);
     return response.data;
   } catch (error) {
     const axiosError = error as {
-      response?: { data: ApiResponse<GetQuestDetailResult> };
+      response?: { data: ApiResponse<GetQuestDetailResult | null> };
     };
     if (axiosError.response?.data) {
       return axiosError.response.data;
