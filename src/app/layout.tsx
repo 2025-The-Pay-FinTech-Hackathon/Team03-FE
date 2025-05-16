@@ -6,7 +6,8 @@ import { initializeAuth } from "@/utils/auth";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { getHeaderConfig } from "@/constants/headers";
-import { QuestNotification } from "@/components/QuestNotification";
+import { QuestNotification } from "@/components/Notification/QuestNotification";
+import { BlockedTransactionNotification } from "@/components/Notification/BlockedTransactionNotification";
 
 export default function RootLayout({
   children,
@@ -49,6 +50,7 @@ export default function RootLayout({
           </div>
         </div>
         <QuestNotification token={getToken()} />
+        <BlockedTransactionNotification token={getToken()} />
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useSocket } from "@/hooks/useSocket";
 import AlertModal from "@/components/Modal/AlertModal";
 import { ROUTES } from "@/constants/routes";
-import { QuestEventResponse } from "@/types/quests/questEventTypes";
+import { QuestEventResponse } from "@/types/socketEvent/questEventTypes";
 
 interface QuestNotificationProps {
   token: string;
