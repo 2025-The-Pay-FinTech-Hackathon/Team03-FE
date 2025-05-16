@@ -6,6 +6,14 @@ export const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((config) => {
+  if (typeof window !== "undefined") {
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (accessToken && config.headers) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+  }
+
   return config;
 });
 
