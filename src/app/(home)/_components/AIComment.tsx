@@ -34,7 +34,7 @@ export default function AIComment() {
       {/* AI 코멘트 말풍선 */}
       <div
         className={`
-          bg-white/70 rounded-2xl p-4 mb-4 relative w-fit mx-auto
+          bg-white/80 rounded-2xl p-4 mb-4 relative w-fit mx-auto
           transition-all duration-700 ease-out
           ${
             isVisible
@@ -45,7 +45,7 @@ export default function AIComment() {
       >
         {/* 말풍선 꼬리 */}
         <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-          <div className="w-4 h-4 bg-white rotate-45 transform origin-center"></div>
+          <div className="w-4 h-4 bg-white/70 rotate-45 transform origin-center"></div>
         </div>
 
         <div className="flex items-start gap-2">
