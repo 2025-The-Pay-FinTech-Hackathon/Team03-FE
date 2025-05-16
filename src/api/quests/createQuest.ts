@@ -12,22 +12,21 @@ export async function createQuest({
   body,
   reward,
   deadline,
-}: CreateQuestRequest): Promise<ApiResponse<CreateQuestResult>> {
+}: CreateQuestRequest): Promise<ApiResponse<CreateQuestResult | null>> {
   try {
-    const response = await axiosInstance.post<ApiResponse<CreateQuestResult>>(
-      ENDPOINTS.QUESTS.CREATE,
-      {
-        category,
-        title,
-        body,
-        reward,
-        deadline,
-      }
-    );
+    const response = await axiosInstance.post<
+      ApiResponse<CreateQuestResult | null>
+    >(ENDPOINTS.QUESTS.CREATE, {
+      category,
+      title,
+      body,
+      reward,
+      deadline,
+    });
     return response.data;
   } catch (error) {
     const axiosError = error as {
-      response?: { data: ApiResponse<CreateQuestResult> };
+      response?: { data: ApiResponse<CreateQuestResult | null> };
     };
     if (axiosError.response?.data) {
       return axiosError.response.data;
