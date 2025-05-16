@@ -33,14 +33,11 @@ export const ENDPOINTS = {
     GET: `${BASE_API}/limits`,
   },
 
-  // 아이 소비 리포트 관련
-  REPORT: {
-    GET: `${BASE_API}/children/spending`,
-  },
-
   // 결제 관련
   PAYMENT: {
     ATTEMPT: `${BASE_API}/payments/attempt`,
     APPROVE: `${BASE_API}/payments/approve`,
+    SPENDING: `${BASE_API}/payments/spending`,
+    REPORT: `${BASE_API}/payments/report`,
   },
 };

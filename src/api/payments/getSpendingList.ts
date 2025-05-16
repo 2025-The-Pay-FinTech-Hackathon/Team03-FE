@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/api/axiosInstance";
 import { ENDPOINTS } from "@/constants/endpoints";
 import { ApiResponse } from "@/types/apiResponseTypes";
-import { GetSpendingListResult } from "@/types/children/getSpendingListTypes";
+import { GetSpendingListResult } from "@/types/payments/getSpendingListTypes";
 
 export async function getSpendingList(): Promise<
   ApiResponse<GetSpendingListResult[] | null>
@@ -9,7 +9,7 @@ export async function getSpendingList(): Promise<
   try {
     const response = await axiosInstance.get<
       ApiResponse<GetSpendingListResult[] | null>
-    >(ENDPOINTS.REPORT.GET);
+    >(ENDPOINTS.PAYMENT.SPENDING);
     return response.data;
   } catch (error) {
     const axiosError = error as {
