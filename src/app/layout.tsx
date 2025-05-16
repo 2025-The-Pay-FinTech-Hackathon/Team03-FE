@@ -33,7 +33,7 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <link rel="manifest" href="./manifest.webmanifest" />
-        <title>용돈의 숲</title>
+        <title>모아봐요! [용돈의 숲]</title>
         <meta name="theme-color" content="#ffffff" />
         <meta name="apple-mobile-web-app-title" content="ClassLog" />
         <link
