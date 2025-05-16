@@ -1,0 +1,21 @@
+{
+  "name": "용돈의 숲",
+  "short_name": "용돈의 숲",
+  "description": "Fintech Progressive Web Application",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f8f8",
+  "theme_color": "#f7f8f8",
+  "icons": [
+    {
+      "src": "/favicon/apple-icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/apple-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
