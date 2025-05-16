@@ -37,7 +37,6 @@ export const ENDPOINTS = {
   PAYMENT: {
     ATTEMPT: `${BASE_API}/payments/attempt`,
     APPROVE: `${BASE_API}/payments/approve`,
-    SPENDING: `${BASE_API}/payments/spending`,
     REPORT: `${BASE_API}/payments/report`,
   },
 };

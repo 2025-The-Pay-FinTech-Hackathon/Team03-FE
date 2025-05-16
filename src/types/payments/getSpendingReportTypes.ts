@@ -4,4 +4,5 @@ export interface GetSpendingReportResult {
   food: number;
   culture: number;
   etc: number;
+  spending: { date: string; merchant: string; amount: number }[];
 }
