@@ -21,8 +21,7 @@ const TextButton: React.FC<TextButtonProps> = ({
     switch (variant) {
       case "secondary":
         return {
-          bg: "bg-[#FFFFFF]",
-          border: "border border-[#1E1E1E]",
+          border: "border border-[#333333]/20",
           hover: "hover:bg-[#DEE1E4]/20",
           active: "active:bg-[#DEE1E4]/50",
         };
