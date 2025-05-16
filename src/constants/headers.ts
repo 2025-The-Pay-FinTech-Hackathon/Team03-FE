@@ -41,7 +41,7 @@ export const ROUTE_HEADERS: RouteHeaderConfig = {
     type: "BackWithTitleHeader",
     title: "소비 제한",
   },
-  [ROUTES.report]: {
+  [ROUTES.aiReport]: {
     type: "BackWithTitleHeader",
     title: "소비 리포트",
   },
@@ -49,9 +49,9 @@ export const ROUTE_HEADERS: RouteHeaderConfig = {
     type: "BackWithTitleHeader",
     title: "설정",
   },
-  [ROUTES.requestOneTimePayment]: {
+  [ROUTES.unblockPaymentRequest]: {
     type: "BackWithTitleHeader",
-    title: "일회성 결제 요청",
+    title: "결제 제한 해지 요청",
   },
   [ROUTES.profileSetting]: {
     type: "BackWithTitleHeader",
