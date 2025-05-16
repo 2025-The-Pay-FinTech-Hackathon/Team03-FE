@@ -13,6 +13,7 @@ export const ENDPOINTS = {
   // 홈 관련
   HOME: {
     GET: `${BASE_API}/home`,
+    GET_AI_COMMENT: `${BASE_API}/home/ai-comment`,
   },
 
   // 퀘스트 관련
