@@ -37,4 +37,9 @@ export const ENDPOINTS = {
   REPORT: {
     GET: `${BASE_API}/children/spending`,
   },
+
+  // 결제 관련
+  PAYMENT: {
+    ATTEMPT: `${BASE_API}/payments/attempt`,
+  },
 };
