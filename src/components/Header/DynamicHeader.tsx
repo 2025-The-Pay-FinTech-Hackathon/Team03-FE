@@ -11,7 +11,12 @@ export default function DynamicHeader() {
 
   if (headerConfig.type === "none") return null;
   if (headerConfig.type === "BackWithTitleHeader") {
-    return <BackWithTitleHeader title={headerConfig.title || ""} />;
+    return (
+      <BackWithTitleHeader
+        title={headerConfig.title || ""}
+        backPath={headerConfig.backPath}
+      />
+    );
   }
   return <TitleHeader title={headerConfig.title || ""} />;
 }

@@ -8,17 +8,21 @@ import VerticalActionButton from "../Button/VerticalActionButton";
 interface BackWithTitleHeaderProps {
   title: string;
   onBackClick?: () => void;
+  backPath?: string;
 }
 
 const BackWithTitleHeader: React.FC<BackWithTitleHeaderProps> = ({
   title,
   onBackClick,
+  backPath,
 }) => {
   const router = useRouter();
 
   const handleBackClick = () => {
     if (onBackClick) {
       onBackClick();
+    } else if (backPath) {
+      router.push(backPath);
     } else {
       router.back();
     }
