@@ -1,11 +1,14 @@
 import { GetHomeInfoResult } from "@/types/home/getHomeInfoTypes";
 
-interface HomeInfoProps {
-  data: GetHomeInfoResult;
-}
+export default function HomeInfo() {
+  const mockData = {
+    leftMoney: 150000,
+    inProgressCount: 3,
+    todayTotalSpend: 25000,
+  };
 
-export default function HomeInfo({ data }: HomeInfoProps) {
-  const { leftMoney, inProgressCount, todayTotalSpend } = data;
+  const { leftMoney, inProgressCount, todayTotalSpend }: GetHomeInfoResult =
+    mockData;
 
   const formatNumber = (num: number) => {
     return num.toLocaleString("ko-KR");
@@ -22,7 +25,7 @@ export default function HomeInfo({ data }: HomeInfoProps) {
       </div>
 
       <div className="bg-white rounded-2xl p-4 flex flex-col items-center">
-        <span className="text-gray-500 text-sm mb-2">진행중인 퀘스트</span>
+        <span className="text-gray-500 text-sm mb-2">진행중 퀘스트</span>
         <div className="flex items-end gap-1">
           <span className="text-xl font-bold">{inProgressCount}</span>
           <span className="text-sm text-gray-500">개</span>
