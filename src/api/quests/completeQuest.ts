@@ -2,7 +2,7 @@ import { axiosInstance } from "@/api/axiosInstance";
 import { ENDPOINTS } from "@/constants/endpoints";
 import { ApiResponse } from "@/types/apiResponseTypes";
 
-export async function comppleteQuest(
+export async function completeQuest(
   questId: string
 ): Promise<ApiResponse<null>> {
   try {
