@@ -66,14 +66,16 @@ const ClosableModal: React.FC<ClosableModalProps> = ({
         className="relative w-full max-w-sm bg-white rounded-xl shadow-xl transition-all duration-300 transform scale-100"
         style={{ maxHeight: "90vh", overflow: "auto" }}
       >
-        <div className="flex flex-col gap-3 justify-between items-center p-4 ">
-          <div className="w-full">
-            <VerticalActionButton onClick={onClose} aria-label="닫기">
-              <X className="w-6 h-6" />
-            </VerticalActionButton>
+        <div className="flex flex-col gap-3 justify-between items-center p-6">
+          <div className="w-full flex justify-end">
+            <div>
+              <VerticalActionButton onClick={onClose} aria-label="닫기">
+                <X className="w-6 h-6" />
+              </VerticalActionButton>
+            </div>
           </div>
 
-          <div>{children}</div>
+          <div className="w-full">{children}</div>
         </div>
       </div>
     </div>,
