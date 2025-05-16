@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { deleteQuest } from "@/api/quests/deleteQuest";
 import ConfirmModal from "@/components/Modal/ConfirmModal";
 import AlertModal from "@/components/Modal/AlertModal";
+import { ROUTES } from "@/constants/routes";
 
 interface QuestHeaderProps {
   isParent: boolean;
@@ -64,13 +65,13 @@ export default function QuestHeader({ isParent, questId }: QuestHeaderProps) {
         onClose={() => {
           setIsResultModalOpen(false);
           if (resultMessage === "퀘스트가 삭제되었습니다.") {
-            router.back();
+            router.push(ROUTES.quest);
           }
         }}
         onConfirm={() => {
           setIsResultModalOpen(false);
           if (resultMessage === "퀘스트가 삭제되었습니다.") {
-            router.back();
+            router.push(ROUTES.quest);
           }
         }}
         confirmText="확인"
