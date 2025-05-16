@@ -2,6 +2,8 @@
 
 import { GetQuestListResult } from "@/types/quests/getQuestListTypes";
 import QuestCard from "./_components/QuestCard";
+import { useAuthStore } from "@/store/useAuthStore";
+import TextButton from "@/components/Button/TextButton";
 
 const DEMO_QUESTS: GetQuestListResult[] = [
   {
@@ -67,6 +69,7 @@ const DEMO_QUESTS: GetQuestListResult[] = [
 ];
 
 export default function QuestPage() {
+  const { role } = useAuthStore();
   const ongoingQuests = DEMO_QUESTS.filter(
     (quest) => quest.status === "CHALLENGING"
   );
@@ -75,24 +78,35 @@ export default function QuestPage() {
   );
 
   return (
-    <div className="w-full flex flex-col p-6 gap-8">
-      <section className="flex flex-col gap-4">
-        <h2 className="text-xl font-bold">진행중인 퀘스트</h2>
-        <div className="grid grid-cols-2 gap-3">
-          {ongoingQuests.map((quest) => (
-            <QuestCard key={quest.questId} quest={quest} />
-          ))}
-        </div>
-      </section>
+    <div className="w-full flex flex-col p-6 justify-between h-full">
+      <div className="flex flex-col gap-8">
+        <section className="flex flex-col gap-4">
+          <h2 className="text-xl font-bold">진행중인 퀘스트</h2>
+          <div className="grid grid-cols-2 gap-3">
+            {ongoingQuests.map((quest) => (
+              <QuestCard key={quest.questId} quest={quest} />
+            ))}
+          </div>
+        </section>
 
-      <section className="flex flex-col gap-4">
-        <h2 className="text-xl font-bold">종료된 퀘스트</h2>
-        <div className="grid grid-cols-2 gap-3">
-          {completedQuests.map((quest) => (
-            <QuestCard key={quest.questId} quest={quest} />
-          ))}
-        </div>
-      </section>
+        <section className="flex flex-col gap-4">
+          <h2 className="text-xl font-bold">종료된 퀘스트</h2>
+          <div className="grid grid-cols-2 gap-3">
+            {completedQuests.map((quest) => (
+              <QuestCard key={quest.questId} quest={quest} />
+            ))}
+          </div>
+        </section>
+      </div>
+      {role === "PARENT" && (
+        <TextButton
+          onClick={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        >
+          우리 아이에게 퀘스트 보내기
+        </TextButton>
+      )}
     </div>
   );
 }
