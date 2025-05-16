@@ -4,16 +4,16 @@ import { ApiResponse } from "@/types/apiResponseTypes";
 import { GetQuestListResult } from "@/types/quests/getQuestListTypes";
 
 export async function getQuestList(): Promise<
-  ApiResponse<GetQuestListResult[]>
+  ApiResponse<GetQuestListResult[] | null>
 > {
   try {
-    const response = await axiosInstance.get<ApiResponse<GetQuestListResult[]>>(
-      ENDPOINTS.QUESTS.GET_LIST
-    );
+    const response = await axiosInstance.get<
+      ApiResponse<GetQuestListResult[] | null>
+    >(ENDPOINTS.QUESTS.GET_LIST);
     return response.data;
   } catch (error) {
     const axiosError = error as {
-      response?: { data: ApiResponse<GetQuestListResult[]> };
+      response?: { data: ApiResponse<GetQuestListResult[] | null> };
     };
     if (axiosError.response?.data) {
       return axiosError.response.data;
