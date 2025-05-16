@@ -16,14 +16,13 @@ const VerticalActionButton: React.FC<VerticalActionButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       className={`
-        w-fit
-        p-2
+        w-20
+        h-20
         flex
         flex-col
         items-center
         justify-center
         rounded-full
-        font-semibold
         text-base
         transition-all
         duration-200
