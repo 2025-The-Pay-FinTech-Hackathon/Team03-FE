@@ -8,6 +8,8 @@ import { usePathname } from "next/navigation";
 import { getHeaderConfig } from "@/constants/headers";
 import { QuestNotification } from "@/components/Notification/QuestNotification";
 import { BlockedTransactionNotification } from "@/components/Notification/BlockedTransactionNotification";
+import { AskApprovalNotification } from "@/components/Notification/AskApprovalNotification";
+import { AskResultNotification } from "@/components/Notification/AskResultNotification";
 
 export default function RootLayout({
   children,
@@ -22,12 +24,10 @@ export default function RootLayout({
     initializeAuth();
   }, []);
 
-  const getToken = () => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("accessToken") || "";
-    }
-    return "";
-  };
+  const token =
+    typeof window !== "undefined"
+      ? localStorage.getItem("accessToken") || ""
+      : "";
 
   return (
     <html lang="ko">
@@ -49,8 +49,10 @@ export default function RootLayout({
             {children}
           </div>
         </div>
-        <QuestNotification token={getToken()} />
-        <BlockedTransactionNotification token={getToken()} />
+        <QuestNotification token={token} />
+        <BlockedTransactionNotification token={token} />
+        <AskApprovalNotification token={token} />
+        <AskResultNotification token={token} />
       </body>
     </html>
   );
