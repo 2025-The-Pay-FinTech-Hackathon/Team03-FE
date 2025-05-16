@@ -8,7 +8,7 @@ export default function AIComment() {
 
   // 데모 코멘트
   const aiComment =
-    "오늘도 열심히 절약하고 계시네요! 🌟\n현재 진행 중인 퀘스트를 완료하면 5,000원을 더 모을 수 있어요.";
+    "오늘도 열심히 절약하고 계시네요! 오늘도 열심히 절약하고 계시네요!🌟";
 
   useEffect(() => {
     // 컴포넌트 마운트 후 약간의 딜레이를 주고 애니메이션 시작
@@ -20,11 +20,11 @@ export default function AIComment() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-end relative p-4">
+    <div className="flex flex-col items-center justify-end relative py-4 px-12 overflow-y-auto">
       {/* AI 코멘트 말풍선 */}
       <div
         className={`
-          bg-white rounded-2xl p-4 mb-4 relative w-full mx-auto
+          bg-white/70 rounded-2xl p-4 mb-4 relative w-fit mx-auto
           transition-all duration-700 ease-out
           ${
             isVisible
