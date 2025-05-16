@@ -6,9 +6,8 @@ export const useSocket = (token: string) => {
 
   useEffect(() => {
     if (!token) return;
-
     // 소켓 연결
-    socketRef.current = io("http://localhost:9092", {
+    socketRef.current = io(process.env.NEXT_PUBLIC_SOCKET_BASE_URL || "", {
       query: { token },
       transports: ["websocket"],
       forceNew: true,
