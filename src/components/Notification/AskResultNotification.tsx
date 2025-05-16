@@ -19,7 +19,7 @@ export const AskResultNotification = ({
 
     // 퀘스트 이벤트 수신 시 상태 업데이트 및 모달 열기
     socket.on("ask-result", (status: "APPROVE" | "REFUSED") => {
-      console.log("📬 새로운 제한 결제 요청:", status);
+      console.log("📬 응답 결과 수신:", status);
       setStatus(status);
       setIsModalOpen(true);
     });

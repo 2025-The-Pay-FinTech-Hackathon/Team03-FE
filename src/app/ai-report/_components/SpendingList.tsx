@@ -1,9 +1,11 @@
 "use client";
 
+import { formatDateTime } from "@/utils/formatters";
+
 interface SpendingListProps {
   spending: Array<{
-    date: string;
-    merchant: string;
+    timestamp: string;
+    merchantName: string;
     amount: number;
   }>;
 }
@@ -19,8 +21,10 @@ export default function SpendingList({ spending }: SpendingListProps) {
             className="flex justify-between items-center p-4 bg-white rounded-lg"
           >
             <div>
-              <div className="font-medium">{item.merchant}</div>
-              <div className="text-sm text-gray-500">{item.date}</div>
+              <div className="font-medium">{item.merchantName}</div>
+              <div className="text-sm text-gray-500">
+                {formatDateTime(item.timestamp)}
+              </div>
             </div>
             <div
               className={`font-semibold ${

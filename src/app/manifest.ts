@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "ClassLog",
-    short_name: "ClassLog",
+    name: "용돈의 숲",
+    short_name: "용돈의 숲",
     description:
       "AI 기반 음성 및 텍스트 분석을 활용한 온라인 강의 관리 및 학습 지원 플랫폼",
     start_url: "/",

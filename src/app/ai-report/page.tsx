@@ -15,7 +15,11 @@ export default function AIReportPage() {
     food: number;
     culture: number;
     etc: number;
-    spending: Array<{ date: string; merchant: string; amount: number }>;
+    spending: Array<{
+      timestamp: string;
+      merchantName: string;
+      amount: number;
+    }>;
   } | null>(null);
 
   const fetchReport = async (selectedDate: string) => {
