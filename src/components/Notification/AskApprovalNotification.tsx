@@ -1,39 +1,35 @@
 import { useEffect, useState } from "react";
-import { useSocket } from "@/hooks/useSocket";
 import ConfirmModal from "../Modal/ConfirmModal";
 import { Bell } from "lucide-react";
 import { formatDateTime } from "@/utils/formatters";
 import { approvePayment } from "@/api/payments/approvePayment";
 import { AskApprovalEventTypesResponse } from "@/types/socketEvent/askApprovalEventTypes";
+import { useSocketContext } from "@/contexts/SocketContext";
 
-interface AskApprovalNotificationProps {
-  token: string;
-}
-
-export const AskApprovalNotification = ({
-  token,
-}: AskApprovalNotificationProps) => {
+export const AskApprovalNotification = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { socket } = useSocketContext();
 
   const [blockedTransaction, setBlockedTransaction] =
     useState<AskApprovalEventTypesResponse>();
-  const socket = useSocket(token);
 
   useEffect(() => {
     if (!socket) return;
 
-    // 퀘스트 이벤트 수신 시 상태 업데이트 및 모달 열기
-    socket.on(
-      "ask-approval",
-      (blockedTransaction: AskApprovalEventTypesResponse) => {
-        console.log("📬 새로운 제한 결제 요청:", blockedTransaction);
-        setBlockedTransaction(blockedTransaction);
-        setIsModalOpen(true);
-      }
-    );
+    const handleAskApproval = (
+      blockedTransaction: AskApprovalEventTypesResponse
+    ) => {
+      console.log("📬 새로운 제한 결제 요청:", blockedTransaction);
+      setBlockedTransaction(blockedTransaction);
+      setIsModalOpen(true);
+    };
 
+    // 이벤트 리스너 등록
+    socket.on("ask-approval", handleAskApproval);
+
+    // cleanup 함수
     return () => {
-      socket.off("ask-approval");
+      socket.off("ask-approval", handleAskApproval);
     };
   }, [socket]);
 
@@ -47,16 +43,18 @@ export const AskApprovalNotification = ({
         status: "APPROVE",
       });
     }
+
     setIsModalOpen(false);
   };
 
-  const handleCanel = async () => {
+  const handleCancel = async () => {
     if (blockedTransaction) {
       await approvePayment({
         ...blockedTransaction,
         status: "REFUSED",
       });
     }
+
     setIsModalOpen(false);
   };
 
@@ -65,7 +63,7 @@ export const AskApprovalNotification = ({
       {blockedTransaction && (
         <ConfirmModal
           isOpen={isModalOpen}
-          onClose={handleCanel}
+          onClose={handleCancel}
           onConfirm={handleConfirm}
           confirmText="수락"
           cancelText="거절"

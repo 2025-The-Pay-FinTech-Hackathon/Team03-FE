@@ -1,31 +1,28 @@
 import { useEffect, useState } from "react";
-import { useSocket } from "@/hooks/useSocket";
 import AlertModal from "../Modal/AlertModal";
+import { useSocketContext } from "@/contexts/SocketContext";
 
-interface AskResultNotificationProps {
-  token: string;
-}
-
-export const AskResultNotification = ({
-  token,
-}: AskResultNotificationProps) => {
+export const AskResultNotification = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { socket } = useSocketContext();
 
-  const [status, setStatus] = useState<"APPROVE" | "REFUSED">();
-  const socket = useSocket(token);
+  const [newStatus, setNewStatus] = useState<"APPROVE" | "REFUSED">();
 
   useEffect(() => {
     if (!socket) return;
 
-    // 퀘스트 이벤트 수신 시 상태 업데이트 및 모달 열기
-    socket.on("ask-result", (status: "APPROVE" | "REFUSED") => {
+    const handleAskResult = (status: "APPROVE" | "REFUSED") => {
       console.log("📬 응답 결과 수신:", status);
-      setStatus(status);
+      setNewStatus(status);
       setIsModalOpen(true);
-    });
+    };
 
+    // 이벤트 리스너 등록
+    socket.on("ask-result", handleAskResult);
+
+    // cleanup 함수
     return () => {
-      socket.off("ask-result");
+      socket.off("ask-result", handleAskResult);
     };
   }, [socket]);
 
@@ -38,15 +35,17 @@ export const AskResultNotification = ({
 
   return (
     <>
-      {status && (
+      {newStatus && (
         <AlertModal
           isOpen={isModalOpen}
           onClose={handleConfirm}
           onConfirm={handleConfirm}
-          confirmText="수락"
+          confirmText="확인"
         >
           <div className="text-center">
-            {status === "APPROVE" ? "결제 승인" : "결제 거절"}
+            {newStatus === "REFUSED"
+              ? "결제가 거절되었습니다."
+              : "결제가 승인되었습니다."}
           </div>
         </AlertModal>
       )}

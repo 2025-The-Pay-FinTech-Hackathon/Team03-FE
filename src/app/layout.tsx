@@ -10,6 +10,7 @@ import { QuestNotification } from "@/components/Notification/QuestNotification";
 import { BlockedTransactionNotification } from "@/components/Notification/BlockedTransactionNotification";
 import { AskApprovalNotification } from "@/components/Notification/AskApprovalNotification";
 import { AskResultNotification } from "@/components/Notification/AskResultNotification";
+import { SocketProvider } from "@/contexts/SocketContext";
 
 export default function RootLayout({
   children,
@@ -51,24 +52,26 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
       </head>
       <body className="antialiased min-h-screen bg-white overflow-hidden">
-        <div className="mx-auto max-w-[500px] min-h-screen bg-[#f7f8f8] shadow-lg color-[#1E1E1E] h-full relative">
-          {hasHeader && (
-            <div className="sticky top-0 left-0 right-0 z-10 bg-[#f7f8f8]">
-              <DynamicHeader />
+        <SocketProvider token={token}>
+          <div className="mx-auto max-w-[500px] min-h-screen bg-[#f7f8f8] shadow-lg color-[#1E1E1E] h-full relative">
+            {hasHeader && (
+              <div className="sticky top-0 left-0 right-0 z-10 bg-[#f7f8f8]">
+                <DynamicHeader />
+              </div>
+            )}
+            <div
+              className={`${
+                hasHeader ? "h-[calc(100vh-3.5rem)]" : "h-screen"
+              } overflow-auto`}
+            >
+              {children}
             </div>
-          )}
-          <div
-            className={`${
-              hasHeader ? "h-[calc(100vh-3.5rem)]" : "h-screen"
-            } overflow-auto`}
-          >
-            {children}
           </div>
-        </div>
-        <QuestNotification token={token} />
-        <BlockedTransactionNotification token={token} />
-        <AskApprovalNotification token={token} />
-        <AskResultNotification token={token} />
+          <QuestNotification />
+          <BlockedTransactionNotification />
+          <AskApprovalNotification />
+          <AskResultNotification />
+        </SocketProvider>
       </body>
     </html>
   );

@@ -1,34 +1,33 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useSocket } from "@/hooks/useSocket";
 import AlertModal from "@/components/Modal/AlertModal";
 import { ROUTES } from "@/constants/routes";
 import { QuestEventResponse } from "@/types/socketEvent/questEventTypes";
+import { useSocketContext } from "@/contexts/SocketContext";
 
-interface QuestNotificationProps {
-  token: string;
-}
-
-export const QuestNotification = ({ token }: QuestNotificationProps) => {
+export const QuestNotification = () => {
   const router = useRouter();
-  const [quest, setQuest] = useState<QuestEventResponse>();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const socket = useSocket(token);
+  const { socket } = useSocketContext();
+
+  const [quest, setQuest] = useState<QuestEventResponse>();
 
   useEffect(() => {
     if (!socket) return;
 
-    // 퀘스트 이벤트 수신 시 상태 업데이트 및 모달 열기
-    socket.on("quest", (newQuest: QuestEventResponse) => {
-      console.log("📬 새로운 퀘스트 수신:", newQuest);
-      setQuest(newQuest);
+    const handleQuestEvent = (quest: QuestEventResponse) => {
+      console.log("📬 새로운 퀘스트 수신:", quest);
+      setQuest(quest);
       setIsModalOpen(true);
-      console.log("🔔 모달 열기 시도");
-    });
+    };
 
+    // 이벤트 리스너 등록
+    socket.on("quest-complete", handleQuestEvent);
+
+    // cleanup 함수
     return () => {
-      socket.off("quest");
+      socket.off("quest-complete", handleQuestEvent);
     };
   }, [socket]);
 

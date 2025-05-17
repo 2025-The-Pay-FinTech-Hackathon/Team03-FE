@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSocket } from "@/hooks/useSocket";
 import AlertModal from "@/components/Modal/AlertModal";
 import { BlockedTransactionEventResponse } from "@/types/socketEvent/blockedTransactionEventTypes";
 import { useAuthStore } from "@/store/useAuthStore";
@@ -7,43 +6,40 @@ import ConfirmModal from "../Modal/ConfirmModal";
 import { attemptPayment } from "@/api/payments/attemptPayment";
 import { Siren } from "lucide-react";
 import { formatDateTime } from "@/utils/formatters";
+import { useSocketContext } from "@/contexts/SocketContext";
 
-interface BlockedTransactionNotificationProps {
-  token: string;
-}
-
-export const BlockedTransactionNotification = ({
-  token,
-}: BlockedTransactionNotificationProps) => {
+export const BlockedTransactionNotification = () => {
   const [isParentModalOpen, setIsParentModalOpen] = useState(false);
   const [isChildModalOpen, setIsChildModalOpen] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [resultMessage, setResultMessage] = useState("");
   const { role } = useAuthStore();
+  const { socket } = useSocketContext();
 
   const [blockedTransaction, setBlockedTransaction] =
     useState<BlockedTransactionEventResponse>();
-  const socket = useSocket(token);
 
   useEffect(() => {
     if (!socket) return;
 
-    // 퀘스트 이벤트 수신 시 상태 업데이트 및 모달 열기
-    socket.on(
-      "transaction-blocked",
-      (blockedTransaction: BlockedTransactionEventResponse) => {
-        console.log("📬 새로운 제한결제 수신:", blockedTransaction);
-        setBlockedTransaction(blockedTransaction);
-        if (role === "PARENT") {
-          setIsParentModalOpen(true);
-        } else {
-          setIsChildModalOpen(true);
-        }
+    const handleTransactionBlocked = (
+      blockedTransaction: BlockedTransactionEventResponse
+    ) => {
+      console.log("📬 새로운 제한결제 수신:", blockedTransaction);
+      setBlockedTransaction(blockedTransaction);
+      if (role === "PARENT") {
+        setIsParentModalOpen(true);
+      } else {
+        setIsChildModalOpen(true);
       }
-    );
+    };
 
+    // 이벤트 리스너 등록
+    socket.on("transaction-blocked", handleTransactionBlocked);
+
+    // cleanup 함수
     return () => {
-      socket.off("transaction-blocked");
+      socket.off("transaction-blocked", handleTransactionBlocked);
     };
   }, [socket, role]);
 
