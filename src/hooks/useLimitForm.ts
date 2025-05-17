@@ -2,8 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { getLimit } from "@/api/limits/getLimit";
 import { updateLimit } from "@/api/limits/updateLimit";
 import { GetLimitResult } from "@/types/limits/getLimitTypes";
-
-type FormData = Required<Omit<GetLimitResult, "location" | "timeRange">> & {
+type FormData = Required<Omit<GetLimitResult, "timeRange">> & {
   startTime: string;
   endTime: string;
 };
@@ -16,6 +15,7 @@ export function useLimitForm() {
     dailyLimit: 0,
     startTime: "",
     endTime: "",
+    location: [],
   });
   const [editData, setEditData] = useState<FormData | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -33,6 +33,7 @@ export function useLimitForm() {
           dailyLimit: response.result.dailyLimit || 0,
           startTime: timeRange[0],
           endTime: timeRange[1],
+          location: [],
         };
         setFormData(newData);
         setEditData(null);
@@ -95,6 +96,7 @@ export function useLimitForm() {
       const response = await updateLimit({
         category: editData.category,
         amountLimit: editData.amountLimit,
+
         timeRange: [editData.startTime, editData.endTime],
         dailyLimit: editData.dailyLimit,
       });

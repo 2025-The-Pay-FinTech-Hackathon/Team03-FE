@@ -20,7 +20,7 @@ export async function updateLimit({
       category,
       amountLimit,
       timeRange,
-      location,
+      location: location || [],
       dailyLimit,
     });
     return response.data;
