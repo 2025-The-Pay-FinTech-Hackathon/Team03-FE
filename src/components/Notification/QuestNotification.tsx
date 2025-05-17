@@ -23,11 +23,11 @@ export const QuestNotification = () => {
     };
 
     // 이벤트 리스너 등록
-    socket.on("quest-complete", handleQuestEvent);
+    socket.on("quest", handleQuestEvent);
 
     // cleanup 함수
     return () => {
-      socket.off("quest-complete", handleQuestEvent);
+      socket.off("quest", handleQuestEvent);
     };
   }, [socket]);
 
